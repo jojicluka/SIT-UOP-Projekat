@@ -14,6 +14,18 @@ public class Korisnik {
 
     }
 
+    public Korisnik(String username, String password, String ime, String prezime, long jmbg, String adress, String pol, long brTel) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.jmbg = jmbg;
+        this.adress = adress;
+        this.pol = pol;
+        this.brTel = brTel;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -78,18 +90,11 @@ public class Korisnik {
         this.brTel = brTel;
     }
 
-
-    public Korisnik(String username, String password, String ime, String prezime, long jmbg, String adress, String pol, long brTel) {
-        super();
-        this.username = username;
-        this.password = password;
-        this.ime = ime;
-        this.prezime = prezime;
-        this.jmbg = jmbg;
-        this.adress = adress;
-        this.pol = pol;
-        this.brTel = brTel;
-        }
+    public static void verifyLogin(){
+        //
     }
+
+
+}
 
 

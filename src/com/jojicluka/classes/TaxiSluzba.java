@@ -1,6 +1,10 @@
 package com.jojicluka.classes;
 
-public class TaxiSluzba {
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TaxiSluzba implements ActionListener {
     public TaxiSluzba(){
 
     }
@@ -59,4 +63,60 @@ public class TaxiSluzba {
     private int cenaStartaVoznje;
     private int cenaPoKilometru;
 
+    private static JLabel userLabel;
+    private static JTextField usernameText;
+    private static JLabel passLabel;
+    private static JPasswordField passwordText;
+    private static JButton button;
+    private static JLabel provera;
+
+    public static void login(){
+        JPanel panel = new JPanel();
+        JFrame frame = new JFrame();
+
+        frame.setSize(400,250);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.add(panel);
+
+        panel.setLayout(null);
+
+        userLabel = new JLabel("User:");
+        userLabel.setBounds(50, 20, 80, 30);
+        panel.add(userLabel);
+
+        usernameText = new JTextField();
+        usernameText.setBounds(140, 20, 150, 30);
+        panel.add(usernameText);
+
+        passLabel = new JLabel("Password:");
+        passLabel.setBounds(50, 50, 80, 30);
+        panel.add(passLabel);
+
+        passwordText = new JPasswordField();
+        passwordText.setBounds(140, 50, 150, 30);
+        panel.add(passwordText);
+
+        button = new JButton("Login");
+        button.setBounds(50, 80, 90, 30);
+        button.addActionListener(new TaxiSluzba());
+        panel.add(button);
+
+        provera = new JLabel("");
+        provera.setBounds(50, 120, 250, 30);
+        panel.add(provera);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String userCheck = usernameText.getText();
+        String passCheck = passwordText.getText();
+
+        if(userCheck.equals("provera") && passCheck.equals("provera")){
+            provera.setText("Login uspesan!");
+        } else {
+            provera.setText("Login neuspesan...");
+        }
+
+    }
 }
