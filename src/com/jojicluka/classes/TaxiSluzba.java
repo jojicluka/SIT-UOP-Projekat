@@ -3,8 +3,14 @@ package com.jojicluka.classes;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class TaxiSluzba implements ActionListener {
+
     public TaxiSluzba(){
 
     }
@@ -63,6 +69,13 @@ public class TaxiSluzba implements ActionListener {
     private int cenaStartaVoznje;
     private int cenaPoKilometru;
 
+    private ArrayList<Vozac> vozaci;
+    private ArrayList<Dispecer> dispeceri;
+    private ArrayList<Korisnik> korisnici;
+    private ArrayList<Automobil> automobili;
+    private ArrayList<Musterija> musterije;
+    private ArrayList<Voznja> voznje;
+
     private static JLabel userLabel;
     private static JTextField usernameText;
     private static JLabel passLabel;
@@ -119,4 +132,62 @@ public class TaxiSluzba implements ActionListener {
         }
 
     }
+
+    public static ArrayList<Korisnik> loadKorisnike() {
+        ArrayList<Korisnik> korisnici = new ArrayList<Korisnik>();
+        try {
+            File file = new File("src/com/jojicluka/text/korisnici.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null){
+                String[] split = line.split("\\|");
+                String username = split[0];
+                String password = split[1];
+                String ime = split[2];
+                String prezime = split[3];
+                long jmbg = Long.parseLong(split[4]);
+                String adress = split[5];
+                String pol = split[6];
+                long brTel = Long.parseLong(split[7]);
+
+                Korisnik korisnik = new Korisnik(username, password, ime, prezime, jmbg, adress, pol, brTel);
+                korisnici.add(korisnik);
+            }
+            reader.close();
+        }catch (Exception e) {
+            System.out.println("Greska u ucitavanju korisnika!");
+        }
+        System.out.println(korisnici);
+        System.out.println("Korisnici ucitani!");
+        return korisnici;
+    }
+
+    public static ArrayList<Automobil> loadAutomobile(){
+        ArrayList<Automobil> automobili = new ArrayList<Automobil>();
+
+        try{
+            File file = new File("src/com/jojicluka/text/automobili.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] split = line.split("\\|");
+                String model = split[0];
+                String proizvodjac = split[1];
+                int godProizvodnje = Integer.parseInt(split[2]);
+                String brTablica = split[3];
+                byte idVozila = Byte.parseByte(split[4]);
+                byte vrsta = Byte.parseByte(split[5]);
+
+                Automobil automobil = new Automobil(model, proizvodjac, godProizvodnje, brTablica, idVozila, vrsta);
+                automobili.add(automobil);
+            }
+            reader.close();
+        } catch(Exception e) {
+            System.out.println("Greska u ucitavanju automobila!");
+        }
+        System.out.println(automobili);
+        System.out.println("Automobili ucitani!");
+        return automobili;
+    }
+
 }

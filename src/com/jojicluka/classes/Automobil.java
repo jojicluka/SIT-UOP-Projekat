@@ -1,11 +1,13 @@
 package com.jojicluka.classes;
 
+import java.util.ArrayList;
+
 public class Automobil {
     public Automobil(){
 
     }
 
-    public Automobil(String model, String proizvodjac, String godProizvodnje, String brTablica, String idVozila, byte vrsta) {
+    public Automobil(String model, String proizvodjac, int godProizvodnje, String brTablica, byte idVozila, byte vrsta) {
         this.model = model;
         this.proizvodjac = proizvodjac;
         this.godProizvodnje = godProizvodnje;
@@ -30,11 +32,11 @@ public class Automobil {
         this.proizvodjac = proizvodjac;
     }
 
-    public String getGodProizvodnje() {
+    public int getGodProizvodnje() {
         return godProizvodnje;
     }
 
-    public void setGodProizvodnje(String godProizvodnje) {
+    public void setGodProizvodnje(int godProizvodnje) {
         this.godProizvodnje = godProizvodnje;
     }
 
@@ -46,11 +48,11 @@ public class Automobil {
         this.brTablica = brTablica;
     }
 
-    public String getIdVozila() {
+    public byte getIdVozila() {
         return idVozila;
     }
 
-    public void setIdVozila(String idVozila) {
+    public void setIdVozila(byte idVozila) {
         this.idVozila = idVozila;
     }
 
@@ -64,8 +66,10 @@ public class Automobil {
 
     private String model;
     private String proizvodjac;
-    private String godProizvodnje;
+    private int godProizvodnje;
     private String brTablica;
-    private String idVozila;
+    private byte idVozila;
     private byte vrsta;
+
+
 }
