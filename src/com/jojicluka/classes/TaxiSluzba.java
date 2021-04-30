@@ -124,13 +124,12 @@ public class TaxiSluzba implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String userCheck = usernameText.getText();
         String passCheck = passwordText.getText();
-
-        if(userCheck.equals("provera") && passCheck.equals("provera")){
+        boolean verify = Korisnik.verifyLogin(userCheck, passCheck);
+        if(verify == true){
             provera.setText("Login uspesan!");
         } else {
             provera.setText("Login neuspesan...");
         }
-
     }
 
     public static ArrayList<Korisnik> loadKorisnike() {
@@ -190,4 +189,36 @@ public class TaxiSluzba implements ActionListener {
         return automobili;
     }
 
+    public static ArrayList<Dispecer> loadDispecere() {
+        ArrayList<Dispecer> dispeceri = new ArrayList<Dispecer>();
+
+        try {
+            File file = new File("src/com/jojicluka/text/dispeceri.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] split = line.split("\\|");
+                String username = split[0];
+                String password = split[1];
+                String ime = split[2];
+                String prezime = split[3];
+                long jmbg = Long.parseLong(split[4]);
+                String adress = split[5];
+                String pol = split[6];
+                long brTel = Long.parseLong(split[7]);
+                int plata = Integer.parseInt(split[8]);
+                int brTelLinije = Integer.parseInt(split[9]);
+                int telOdeljenje = Integer.parseInt(split[10]);
+
+                Dispecer dispecer = new Dispecer(username, password, ime, prezime, jmbg, adress, pol, brTel, plata, brTelLinije, telOdeljenje);
+                dispeceri.add(dispecer);
+            }
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Greska u ucitavanju dispecera!");
+        }
+        System.out.println(dispeceri);
+        System.out.println("Dispeceri ucitani!");
+        return dispeceri;
+    }
 }

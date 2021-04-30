@@ -1,5 +1,9 @@
 package com.jojicluka.classes;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 public class Korisnik {
     private String username;
     private String password;
@@ -90,8 +94,23 @@ public class Korisnik {
         this.brTel = brTel;
     }
 
-    public static void verifyLogin(){
-        //
+    public static boolean verifyLogin(String userCheck, String passCheck){
+        try{
+            File file = new File("src/com/jojicluka/text/korisnici.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] split = line.split("\\|");
+                if((userCheck.equals(split[0])) && (passCheck.equals(split[1]))){
+                    return true;
+                }
+            }
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Greska u verifikovanju logina!");
+            return false;
+        }
+        return false;
     }
 
 
