@@ -1,9 +1,6 @@
 package com.jojicluka.classes;
 
 public class Voznja {
-    public Voznja(){
-
-    }
 
     public Voznja(String vremePorudzbine, String adresaPolaska, String adresaDestinacije, String musterija, String vozac, int brojKmPredjenih, int trajanjeVoznje, byte statusVoznje) {
         this.vremePorudzbine = vremePorudzbine;
@@ -14,6 +11,10 @@ public class Voznja {
         this.brojKmPredjenih = brojKmPredjenih;
         this.trajanjeVoznje = trajanjeVoznje;
         this.statusVoznje = statusVoznje;
+    }
+
+    public Voznja(){
+
     }
 
     private String vremePorudzbine;

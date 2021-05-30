@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-public class Korisnik {
+abstract class Korisnik {
     private String username;
     private String password;
     private String ime;
