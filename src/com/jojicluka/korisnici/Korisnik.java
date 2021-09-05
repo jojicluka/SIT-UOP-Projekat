@@ -1,34 +1,41 @@
-package com.jojicluka.classes;
+package com.jojicluka.korisnici;
+
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-abstract class Korisnik {
-    private String username;
-    private String password;
-    private String ime;
-    private String prezime;
-    private long jmbg;
-    private String adress;
-    private String pol;
-    private long brTel;
+public abstract class Korisnik {
+    protected String id;
+    protected String username;
+    protected String password;
+    protected String ime;
+    protected String prezime;
+    protected long jmbg;
+    protected String adress;
+    protected Pol pol;
+    protected long brTel;
 
     public Korisnik(){
 
     }
 
-    public Korisnik(String username, String password, String ime, String prezime, long jmbg, String adress, String pol, long brTel) {
+    public Korisnik(String id,String username, String password, String ime, String prezime, long jmbg, String adress, Pol pol, long brTel) {
         super();
+        this.id = id;
         this.username = username;
         this.password = password;
         this.ime = ime;
         this.prezime = prezime;
         this.jmbg = jmbg;
         this.adress = adress;
-        this.pol = pol;
+        this.pol = null;
         this.brTel = brTel;
     }
+
+    public String getId() {return id;}
+
+    public void setId(String id) {this.id = id;}
 
     public String getUsername() {
         return username;
@@ -78,11 +85,11 @@ abstract class Korisnik {
         this.adress = adress;
     }
 
-    public String getPol() {
+    public Pol getPol() {
         return pol;
     }
 
-    public void setPol(String pol) {
+    public void setPol(Pol pol) {
         this.pol = pol;
     }
 
@@ -96,7 +103,7 @@ abstract class Korisnik {
 
     public static boolean verifyLogin(String userCheck, String passCheck){
         try{
-            File file = new File("src/com/jojicluka/text/korisnici.txt");
+            File file = new File("src/com/jojicluka/text/musterije.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {

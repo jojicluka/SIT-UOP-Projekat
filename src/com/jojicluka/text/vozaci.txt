@@ -1,2 +1,5 @@
-vozac|pass|alen|prezimic|3002003553211|Aleksandrova 2|m|0663332113|60000|10133|1
-vozac2|testiranje|zju|testt|2005001800074|Lastina 3|f|0670112020|65000|10032|2
+201|vozac|pass|alen|prezimic|3002003553211|Aleksandrova 2|Muski|663332113|60000|10133|true
+202|vozac23|testiranje|zju|testt|2005001800074|Lastina 3|Muski|670112020|65000|10032|true
+203|vozac3|testiranje1|zju|testt|2005001800044|Lastina 32|Muski|670112020|65000|10032|true
+204|vozac7|testiranje1|zju|testt|2005001800044|Lastina 32|Muski|670112020|65000|10032|false
+205|testvozac|testpassword|Testarosa|Testarosic|200300478932|Vojvode Testiranja 23|Muski|643325354|59000|10033|true

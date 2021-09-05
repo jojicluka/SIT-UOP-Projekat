@@ -1,0 +1,2 @@
+101|admin|pass|steve|doe|2003001800074|Mileticeva 29|Muski|0640221010|true
+102|user|pass123|steven|oed|2004001800074|Test Podatak 14|Zenski|0630112020|true

@@ -1,2 +1,0 @@
-admin|pass|steve|doe|2003001800074|mileticeva29|m|0640221010
-user|pass123|steven|oed|2004001800074|testpodatak|f|0630112020

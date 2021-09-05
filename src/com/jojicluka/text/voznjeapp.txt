@@ -1,0 +1,2 @@
+1001|25-05-2021 00:43:39|Aleksandrova 3|Mileticeva 29|user|vozac|20|10|5|true|APLIKACIJA|102|201|NEMA
+1002|26-05-2021 20:13:21|Jug Bogdana 3|Svetosavska 30|admin|vozac2|31|20|5|true|APLIKACIJA|101|202|NEMA
