@@ -1,4 +1,5 @@
-2001|30-08-2021 00:43:39|Aleksandrova 23|Mileticeva 119|com.jojicluka.korisnici.Musterija@56a552ba|com.jojicluka.korisnici.Vozac@3ddb7d4e|53|45|ODBIJENA|true|102|201
-2002|27-08-2021 20:13:21|Jug Bogdana 53|Vojvodjanska 10|com.jojicluka.korisnici.Musterija@267be035|com.jojicluka.korisnici.Vozac@1f05ef4d|11|21|ZAVRSENA|true|101|202
-2003|2021-09-05|Novosadska 33|Brace Ribnikar 11|com.jojicluka.korisnici.Musterija@63494e95|com.jojicluka.korisnici.Vozac@51e6ebf|0|0|DODELJENA|true|101|203
-2004|2021-09-05|Lastina 81|Cara Lazara 12|com.jojicluka.korisnici.Musterija@7c1d4c61|com.jojicluka.korisnici.Vozac@4cd2ab28|33|10|ZAVRSENA|true|102|201
+2001|30-08-2021 00:43:39|Aleksandrova 23|Mileticeva 119|com.jojicluka.korisnici.Musterija@8c84f1b|com.jojicluka.korisnici.Vozac@3b1b7b79|53|45|ODBIJENA|true|102|201
+2002|27-08-2021 20:13:21|Jug Bogdana 53|Vojvodjanska 10|com.jojicluka.korisnici.Musterija@6ca0c96a|com.jojicluka.korisnici.Vozac@6721ca8c|11|21|ZAVRSENA|true|101|202
+2003|2021-09-05|Novosadska 33|Brace Ribnikar 11|com.jojicluka.korisnici.Musterija@2ddbf1e4|com.jojicluka.korisnici.Vozac@4d7b9795|0|0|DODELJENA|true|101|203
+2004|2021-09-05|Lastina 81|Cara Lazara 12|com.jojicluka.korisnici.Musterija@27fafcc9|com.jojicluka.korisnici.Vozac@4e663710|33|10|ZAVRSENA|true|102|201
+2005|2021-09-10|Bulevar Cara Lazara |Centar|com.jojicluka.korisnici.Musterija@3c40bbe9|com.jojicluka.korisnici.Vozac@2d9644cb|12|24|ZAVRSENA|true|101|202

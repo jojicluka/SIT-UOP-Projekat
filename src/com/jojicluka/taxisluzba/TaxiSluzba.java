@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class TaxiSluzba {
 
@@ -20,6 +22,7 @@ public class TaxiSluzba {
     private ArrayList<Musterija> musterije;
     private ArrayList<VoznjaApp> voznje;
     private ArrayList<VoznjaTel> voznjeTel;
+    private ArrayList<Ponuda> ponude;
 
     public TaxiSluzba(){
         this.vozaci = new ArrayList<Vozac>();
@@ -28,6 +31,7 @@ public class TaxiSluzba {
         this.musterije = new ArrayList<Musterija>();
         this.voznje = new ArrayList<VoznjaApp>();
         this.voznjeTel = new ArrayList<VoznjaTel>();
+        this.ponude = new ArrayList<Ponuda>();
 
         loadAutomobile();
         loadVoznjeApp();
@@ -35,7 +39,7 @@ public class TaxiSluzba {
         loadMusterije();
         loadVozace();
         loadVoznjeTel();
-        loadVoznjeApp();
+        loadPonude();
     }
 
    /* public TaxiSluzba(long pib, String naziv, String adress, int cenaStartaVoznje, int cenaPoKilometru) {
@@ -110,6 +114,12 @@ public class TaxiSluzba {
         this.vozaci = vozaci;
     }
 
+    public ArrayList<VoznjaApp> getVoznjeApp(){
+        return voznje;
+    }
+
+    public ArrayList<Ponuda> getPonude(){return ponude;}
+
     private long pib;
     private String naziv;
     private String adress;
@@ -167,6 +177,15 @@ public class TaxiSluzba {
         for (VoznjaTel voznjaTel: voznjeTel){
             if(voznjaTel.getId().equals(id)){
                 return voznjaTel;
+            }
+        }
+        return null;
+    }
+
+    public VoznjaApp nadjiVoznjuIdApp(String id){
+        for(VoznjaApp voznjaApp:voznje){
+            if(voznjaApp.getId().equals(id)){
+                return voznjaApp;
             }
         }
         return null;
@@ -325,8 +344,7 @@ public class TaxiSluzba {
                 Vozac vozac = nadjiVozaca(split[5]);
                 int brojKmPredjenih = Integer.parseInt(split[6]);
                 int trajanjeVoznje = Integer.parseInt(split[7]);
-                int statusVoznjeInt = Integer.parseInt(split[8]);
-                StatusVoznje statusVoznje = StatusVoznje.values()[statusVoznjeInt];
+                StatusVoznje statusVoznje = StatusVoznje.valueOf(split[8]);
                 boolean postoji = Boolean.parseBoolean(split[9]);
                 String idMusterije = split[10];
                 String idVozaca = split[11];
@@ -373,6 +391,25 @@ public class TaxiSluzba {
         }
     }
 
+    public void loadPonude(){
+        try{
+            File file = new File("src/com/jojicluka/text/ponude.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line = null;
+            while ((line = br.readLine()) != null){
+                System.out.println(line);
+                String[] split = line.split("\\|");
+                String idVozaca = split[0];
+                String vreme = split[1];
+                String usernameVozaca = split[2];
+                String idVoznje = split[3];
+                Ponuda ponuda = new Ponuda(idVozaca, vreme, usernameVozaca, idVoznje);
+                ponude.add(ponuda);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 /////////////////////////////////////////////////////
                 //RETURN FUNKCIJE//
 /////////////////////////////////////////////////////
@@ -434,11 +471,31 @@ public class TaxiSluzba {
         return dodela;
     }
 
+    public ArrayList<VoznjaApp> sveVoznjeCekanje(){
+        ArrayList<VoznjaApp> cekanje = new ArrayList<VoznjaApp>();
+        for(VoznjaApp voznjaApp : voznje){
+            if(voznjaApp.isPostoji() && voznjaApp.getStatusVoznje().equals(StatusVoznje.KREIRANA_NA_CEKANJU)){
+                cekanje.add(voznjaApp);
+            }
+        }
+        return cekanje;
+    }
+
     public ArrayList<VoznjaTel> sveVoznjeDodelaId(String vozacId){
         ArrayList<VoznjaTel> dodela = new ArrayList<VoznjaTel>();
         for (VoznjaTel voznjaTel : voznjeTel){
             if(voznjaTel.isPostoji() && voznjaTel.getStatusVoznje().equals(StatusVoznje.DODELJENA) && voznjaTel.getIdVozaca().equals(vozacId)){
                 dodela.add(voznjaTel);
+            }
+        }
+        return dodela;
+    }
+
+    public ArrayList<VoznjaApp> sveVoznjeDodelaIdApp(String vozacId){
+        ArrayList<VoznjaApp> dodela = new ArrayList<VoznjaApp>();
+        for ( VoznjaApp voznjaApp : voznje) {
+            if (voznjaApp.isPostoji() && voznjaApp.getStatusVoznje().equals(StatusVoznje.DODELJENA) && voznjaApp.getIdVozaca().equals(vozacId)){
+                dodela.add(voznjaApp);
             }
         }
         return dodela;
@@ -452,6 +509,29 @@ public class TaxiSluzba {
             }
         }
         return prihvacene;
+    }
+
+    public ArrayList<VoznjaApp> sveVoznjePrihvaceneApp(String vozacId){
+        ArrayList<VoznjaApp> prihvacene = new ArrayList<VoznjaApp>();
+        for (VoznjaApp voznjaApp : voznje){
+            if(voznjaApp.isPostoji() && voznjaApp.getStatusVoznje().equals(StatusVoznje.PRIHVACENA) && voznjaApp.getIdVozaca().equals(vozacId)){
+                prihvacene.add(voznjaApp);
+            }
+        }
+        return prihvacene;
+    }
+
+    public Integer returnIdVozaca(String ime) {
+        String id = new String("");
+        int idInt = 0;
+        for(Vozac vozac: vozaci){
+            if(ime.equals(vozac.getIme())){
+                id.equals(vozac.getId());
+                idInt = Integer.parseInt(id);
+                return idInt;
+            }
+        }
+        return idInt;
     }
 
 ///////////////////////////////////////////////////////////
@@ -485,7 +565,7 @@ public class TaxiSluzba {
                 s += voznjaApp.getId() + "|" + voznjaApp.getVremePorudzbine() + "|" + voznjaApp.getAdresaPolaska() + "|" +
                         voznjaApp.getAdresaDestinacije() + "|" + voznjaApp.getMusterija() + "|" + voznjaApp.getVozac() + "|" +
                         voznjaApp.getBrojKmPredjenih() + "|" + voznjaApp.getTrajanjeVoznje() + "|" + voznjaApp.getStatusVoznje() + "|" +
-                        voznjaApp.isPostoji() + "|" + voznjaApp.getIdMusterije() + "|" + voznjaApp.getIdVozaca() + "|" + voznjaApp.getNapomena() + "\n";
+                        voznjaApp.isPostoji() + "|" + voznjaApp.getIdMusterije() + "|" + voznjaApp.getIdVozaca() + "|" + voznjaApp.getNacinPorucivanja() + "|" + voznjaApp.getNapomena() + "\n";
             }
             bw.write(s);
             bw.close();
@@ -560,6 +640,97 @@ public class TaxiSluzba {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void savePonude(){
+        try{
+            File file = new File("src/com/jojicluka/text/ponude.txt");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            String s = "";
+            for(Ponuda ponuda: ponude){
+                s+= ponuda.getIdVozaca() + "|" + ponuda.getVreme() + "|" + ponuda.getUsernameVozaca() + "|" + ponuda.getIdVoznje() + "\n";
+            }
+            bw.write(s);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+////////////////////////////////////////////////////////////////
+    ///////////////// FUNKCIJE AISP-a /////////////////////////
+
+    public ArrayList<Vozac> kombinovanaPretraga(Vozac vozac) {
+        ArrayList<Vozac> returnIme = new ArrayList<>();
+        ArrayList<Vozac> returnPrezime = new ArrayList<>();
+        ArrayList<Vozac> returnPlata = new ArrayList<>();
+        ArrayList<Vozac> returnAutomobil = new ArrayList<>();
+
+        for(Vozac vozac1 : vozaci) {
+            if(vozac.getIme() == null || vozac.getIme().equals("")){
+                returnIme = vozaci;
+                break;
+            }
+            if (vozac1.getIme().toLowerCase(Locale.ROOT).contains(vozac.getIme().toLowerCase(Locale.ROOT))){
+                returnIme.add(vozac1);
+                System.out.println(returnIme);
+            }
+        }
+
+        for(Vozac vozac1 : vozaci) {
+            if(vozac.getPrezime() == null || vozac.getPrezime().equals("")){
+                returnPrezime = vozaci;
+                break;
+            }
+            if (vozac1.getPrezime().toLowerCase(Locale.ROOT).contains(vozac.getPrezime().toLowerCase(Locale.ROOT))){
+                returnPrezime.add(vozac1);
+                System.out.println("Usao sam u prezime");
+            }
+        }
+
+        for(Vozac vozac1 : vozaci){
+            if(vozac.getPlata() == 0){
+                returnPlata = vozaci;
+                break;
+            }
+            if(vozac1.getPlata() == vozac.getPlata()){
+                returnPlata.add(vozac1);
+                System.out.println("Usao sam u plate");
+            }
+        }
+
+//        for(Automobil automobil: automobili) {
+  //          if(vozac.getIdVozila() == -1) {
+    //            continue;
+      //      }
+      //  }
+        System.out.println("Imena: "+ returnIme);
+        System.out.println("Prezimena "+ returnPrezime);
+        System.out.println("Plate " + returnPlata);
+       returnIme.retainAll(returnPrezime);
+       returnIme.retainAll(returnPlata);
+
+       return returnIme;
+    }
+
+    public String returnVozacIdAukcija(String idVoznje){
+        try {
+            System.out.println(idVoznje);
+            ArrayList<Ponuda> odgovarajucePonude = new ArrayList<Ponuda>();
+            for(Ponuda ponuda : ponude) {
+                if(ponuda.getIdVoznje().equals(idVoznje)){
+                    odgovarajucePonude.add(ponuda);
+                }
+            }
+            System.out.println(odgovarajucePonude);
+            Collections.sort(odgovarajucePonude);
+            System.out.println(odgovarajucePonude);
+            Ponuda glavnaPonuda = odgovarajucePonude.get(0);
+            String idVozaca = glavnaPonuda.getIdVozaca();
+            return idVozaca;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     }

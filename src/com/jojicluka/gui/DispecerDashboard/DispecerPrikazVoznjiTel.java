@@ -41,6 +41,7 @@ public class DispecerPrikazVoznjiTel extends JFrame {
         DefaultTableModel dtm = new DefaultTableModel(content,glava);
         tabela = new JTable(dtm);
         tabela.setRowSelectionAllowed(true);
+        tabela.setAutoCreateRowSorter(true);
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.setDefaultEditor(Object.class, null);

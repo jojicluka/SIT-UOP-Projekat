@@ -1,6 +1,7 @@
 package com.jojicluka.gui.VozacDashboard;
 
 import com.jojicluka.taxisluzba.TaxiSluzba;
+import com.jojicluka.voznje.VoznjaApp;
 import com.jojicluka.voznje.VoznjaTel;
 
 import javax.swing.*;
@@ -10,16 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class VozacPrikazPrihvacenihVoznji extends JFrame {
+public class VozacPrikazPrihvacenihVoznjiApp extends JFrame {
     private JTable tabela;
     private DefaultTableModel dtm;
     private JButton btnZavrsi;
     private JPanel mainPanel;
 
-    private ArrayList<VoznjaTel> voznjeTel;
+    private ArrayList<VoznjaApp> voznje;
 
-    public VozacPrikazPrihvacenihVoznji(TaxiSluzba taxiSluzba, String username){
-        setTitle("Prikaz prihvacenih voznji");
+    public VozacPrikazPrihvacenihVoznjiApp(TaxiSluzba taxiSluzba, String username){
+        setTitle("Prikaz prihvacenih voznji aplikacija");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100,100, 1000,500);
         mainPanel = new JPanel();
@@ -33,16 +34,16 @@ public class VozacPrikazPrihvacenihVoznji extends JFrame {
                 "id", "Vreme porudzbine", "Adresa polaska", "Adresa Destinacije", "ID musterije", "Status"
         };
         String vozacId = taxiSluzba.nadjiVozacId(username);
-        voznjeTel = taxiSluzba.sveVoznjePrihvaceneId(vozacId);
-        Object [][] content = new Object[voznjeTel.size()][glava.length];
-        for(int i=0;i<voznjeTel.size();i++){
-            VoznjaTel voznjaTel = voznjeTel.get(i);
-            content[i][0] = voznjaTel.getId();
-            content[i][1] = voznjaTel.getVremePorudzbine();
-            content[i][2] = voznjaTel.getAdresaPolaska();
-            content[i][3] = voznjaTel.getAdresaDestinacije();
-            content[i][4] = voznjaTel.getIdMusterije();
-            content[i][5] = voznjaTel.getStatusVoznje();
+        voznje = taxiSluzba.sveVoznjePrihvaceneApp(vozacId);
+        Object [][] content = new Object[voznje.size()][glava.length];
+        for(int i=0;i<voznje.size();i++){
+            VoznjaApp voznjaApp = voznje.get(i);
+            content[i][0] = voznjaApp.getId();
+            content[i][1] = voznjaApp.getVremePorudzbine();
+            content[i][2] = voznjaApp.getAdresaPolaska();
+            content[i][3] = voznjaApp.getAdresaDestinacije();
+            content[i][4] = voznjaApp.getIdMusterije();
+            content[i][5] = voznjaApp.getStatusVoznje();
         }
         DefaultTableModel dtm = new DefaultTableModel(content,glava);
         tabela = new JTable(dtm);
@@ -59,19 +60,19 @@ public class VozacPrikazPrihvacenihVoznji extends JFrame {
         btnZavrsi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               int row = tabela.getSelectedRow();
-               if(row == -1) {
-                   JOptionPane.showMessageDialog(null, "Izaberite voznju iz tabele! ", "ERROR", JOptionPane.WARNING_MESSAGE);
-               } else {
-                   String voznjaId = tabela.getValueAt(row,0).toString();
-                   VoznjaTel voznjaTel = taxiSluzba.nadjiVoznjuId(voznjaId);
-                   if (voznjaTel==null){
-                       JOptionPane.showMessageDialog(null, "Ta voznja ne postoji!", "ERROR", JOptionPane.WARNING_MESSAGE);
-                   } else {
-                       VozacZavrsiVoznju vzv = new VozacZavrsiVoznju(taxiSluzba, voznjaTel);
-                       vzv.setVisible(true);
-                   }
-               }
+                int row = tabela.getSelectedRow();
+                if(row == -1) {
+                    JOptionPane.showMessageDialog(null, "Izaberite voznju iz tabele! ", "ERROR", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    String voznjaId = tabela.getValueAt(row,0).toString();
+                    VoznjaApp voznjaApp = taxiSluzba.nadjiVoznjuIdApp(voznjaId);
+                    if (voznjaApp==null){
+                        JOptionPane.showMessageDialog(null, "Ta voznja ne postoji!", "ERROR", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        VozacZavrsiVoznjuApp vzva = new VozacZavrsiVoznjuApp(taxiSluzba, voznjaApp);
+                        vzva.setVisible(true);
+                    }
+                }
             }
         });
     }

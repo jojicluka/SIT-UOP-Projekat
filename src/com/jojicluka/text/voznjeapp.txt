@@ -1,2 +1,5 @@
-1001|25-05-2021 00:43:39|Aleksandrova 3|Mileticeva 29|user|vozac|20|10|5|true|APLIKACIJA|102|201|NEMA
-1002|26-05-2021 20:13:21|Jug Bogdana 3|Svetosavska 30|admin|vozac2|31|20|5|true|APLIKACIJA|101|202|NEMA
+1001|25-05-2021|Kopaonicka 5|Zlatiborska 29|com.jojicluka.korisnici.Musterija@36c36dd0|com.jojicluka.korisnici.Vozac@b83b80c|20|10|ZAVRSENA|true|102|201|APLIKACIJA|APLIKACIJA
+1002|26-05-2021|Bezimenska 73|Anarhijska 30|com.jojicluka.korisnici.Musterija@335fdd4b|com.jojicluka.korisnici.Vozac@72d20a99|31|20|ZAVRSENA|true|101|203|APLIKACIJA|APLIKACIJA
+1003|25-05-2021|Bespotrebna 8|Avalska 25|com.jojicluka.korisnici.Musterija@5fd254fe|com.jojicluka.korisnici.Vozac@4907c4d0|20|10|ZAVRSENA|true|102|201|APLIKACIJA|APLIKACIJA
+1004|26-05-2021|Jug Bogdana 1|Svetosavska 38|com.jojicluka.korisnici.Musterija@4ffed3e|com.jojicluka.korisnici.Vozac@661bb9fa|31|20|ZAVRSENA|true|101|202|APLIKACIJA|APLIKACIJA
+1005|2021-09-16|Aksentijevica 51|Fuslijeva 45|com.jojicluka.korisnici.Musterija@2ba37463|com.jojicluka.korisnici.Vozac@5c751483|44|12|ZAVRSENA|true|101|203|APLIKACIJA|APLIKACIJA

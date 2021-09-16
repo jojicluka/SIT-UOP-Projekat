@@ -33,6 +33,10 @@ public abstract class Korisnik {
         this.brTel = brTel;
     }
 
+    public Korisnik(String ime, String prezime){
+        this.ime = ime;
+        this.prezime = prezime;
+    }
     public String getId() {return id;}
 
     public void setId(String id) {this.id = id;}

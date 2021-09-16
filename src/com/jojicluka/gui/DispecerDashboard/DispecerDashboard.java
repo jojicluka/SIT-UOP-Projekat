@@ -20,6 +20,8 @@ public class DispecerDashboard extends JFrame {
     private JButton btnPrikazVoznjiApp = new JButton("Prikaz voznji narucene aplikacijom");
     private JButton btnPrikazAutomobila = new JButton("Prikaz svih automobila");
     private JButton btnDodelaVoznje = new JButton("Dodeli voznje vozacu");
+    private JButton btnPretragaVozaca = new JButton("Pretrazi vozaca");
+    private JButton btnAukcija = new JButton("Aukcija");
     private JToolBar toolbar = new JToolBar();
     private JTable tabela;
 
@@ -35,6 +37,8 @@ public class DispecerDashboard extends JFrame {
         toolbar.add(btnPrikazVoznjiApp);
         toolbar.add(btnDodelaVoznje);
         toolbar.add(btnPrikazAutomobila);
+        toolbar.add(btnPretragaVozaca);
+        toolbar.add(btnAukcija);
         add(toolbar, BorderLayout.NORTH);
 
         btnPrikazVozaca.addActionListener(new ActionListener() {
@@ -74,6 +78,22 @@ public class DispecerDashboard extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DispecerPrikazAutomobila dpa = new DispecerPrikazAutomobila(taxiSluzba);
                 dpa.setVisible(true);
+            }
+        });
+
+        btnPretragaVozaca.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DispecerPretragaVozaca dpv = new DispecerPretragaVozaca(taxiSluzba);
+                dpv.setVisible(true);
+            }
+        });
+
+        btnAukcija.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DispecerAukcija da = new DispecerAukcija(taxiSluzba);
+                da.setVisible(true);
             }
         });
     }

@@ -60,6 +60,7 @@ public class DispecerPrikazVozaca extends JFrame {
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.setDefaultEditor(Object.class, null);
+        tabela.setAutoCreateRowSorter(true);
         scrollPane.setViewportView(tabela);
         btnDodajVozaca = new JButton("Dodaj");
         btnDodajVozaca.setFont(new Font("Helvetica Neue", Font.BOLD,12));

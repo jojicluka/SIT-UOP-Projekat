@@ -12,9 +12,15 @@ public class Vozac extends Korisnik {
         this.postoji = postoji;
 
     }
+   public Vozac(String ime, String prezime, int plata, int idVozila){
+        super(ime,prezime);
+        this.plata = plata;
+        this.idVozila = idVozila;
+   }
 
     private int plata;
     private int brClanskeKarte;
+    private int idVozila;
     private boolean postoji;
 
 
@@ -24,6 +30,10 @@ public class Vozac extends Korisnik {
 
     public void setPostoji(boolean postoji) {
         this.postoji = postoji;
+    }
+
+    public int getIdVozila(){
+        return idVozila;
     }
 
     public int getPlata() {

@@ -19,9 +19,11 @@ public class DispecerPrikazVoznjiAplikacija extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         String [] glava = new String[] {
                 "id", "Vreme porudzbine", "Adresa polaska", "Adresa destinacije", "Musterija", "Vozac",
-                "Predjeni KM", "Trajanje", "Status", "Nacin porudzbine", "ID musterije", "ID vozaca"
+                "Predjeni KM", "Trajanje", "Status", "ID musterije", "ID vozaca", "Napomena"
         };
+        System.out.println(voznje);
         voznje = taxiSluzba.sveVoznjeApp();
+        System.out.println(voznje);
         Object [][] content = new Object [voznje.size()][glava.length];
 
         for(int i=0;i<voznje.size();i++){
@@ -43,6 +45,7 @@ public class DispecerPrikazVoznjiAplikacija extends JFrame {
         tabela = new JTable(dtm);
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
+        tabela.setAutoCreateRowSorter(true);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.setDefaultEditor(Object.class, null);
         JScrollPane scrollPane = new JScrollPane(tabela);

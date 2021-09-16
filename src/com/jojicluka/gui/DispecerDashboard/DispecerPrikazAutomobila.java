@@ -40,6 +40,7 @@ public class DispecerPrikazAutomobila extends JFrame {
         tabela.setColumnSelectionAllowed(false);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.setDefaultEditor(Object.class, null);
+        tabela.setAutoCreateRowSorter(true);
         JScrollPane scrollPane = new JScrollPane(tabela);
         add(scrollPane, BorderLayout.CENTER);
     }

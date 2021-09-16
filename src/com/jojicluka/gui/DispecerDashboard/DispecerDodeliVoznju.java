@@ -49,6 +49,7 @@ public class DispecerDodeliVoznju extends JFrame {
         tabela.setModel(new DefaultTableModel(content,glava));
         tabela.setRowSelectionAllowed(true);
         tabela.setColumnSelectionAllowed(false);
+        tabela.setAutoCreateRowSorter(true);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.setDefaultEditor(Object.class, null);
 
