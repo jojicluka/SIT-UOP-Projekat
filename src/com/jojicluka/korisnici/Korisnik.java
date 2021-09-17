@@ -37,6 +37,11 @@ public abstract class Korisnik {
         this.ime = ime;
         this.prezime = prezime;
     }
+
+    public Korisnik(String id){
+        this.id=id;
+    }
+
     public String getId() {return id;}
 
     public void setId(String id) {this.id = id;}

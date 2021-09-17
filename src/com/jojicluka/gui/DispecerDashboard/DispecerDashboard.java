@@ -22,6 +22,7 @@ public class DispecerDashboard extends JFrame {
     private JButton btnDodelaVoznje = new JButton("Dodeli voznje vozacu");
     private JButton btnPretragaVozaca = new JButton("Pretrazi vozaca");
     private JButton btnAukcija = new JButton("Aukcija");
+    private JButton btnBinarna = new JButton("Binarna pretraga po id");
     private JToolBar toolbar = new JToolBar();
     private JTable tabela;
 
@@ -39,6 +40,7 @@ public class DispecerDashboard extends JFrame {
         toolbar.add(btnPrikazAutomobila);
         toolbar.add(btnPretragaVozaca);
         toolbar.add(btnAukcija);
+        toolbar.add(btnBinarna);
         add(toolbar, BorderLayout.NORTH);
 
         btnPrikazVozaca.addActionListener(new ActionListener() {
@@ -96,7 +98,17 @@ public class DispecerDashboard extends JFrame {
                 da.setVisible(true);
             }
         });
+
+        btnBinarna.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DispecerBinarnaPretraga  dbp = new DispecerBinarnaPretraga(taxiSluzba);
+                dbp.setVisible(true);
+            }
+        });
     }
+
+
 
 }
 

@@ -1,7 +1,9 @@
 package com.jojicluka.korisnici;
 
 
-public class Vozac extends Korisnik {
+import java.util.Comparator;
+
+public class Vozac extends Korisnik implements Comparable<Vozac>, Comparator<Vozac> {
     public Vozac(){
     }
 
@@ -23,6 +25,9 @@ public class Vozac extends Korisnik {
     private int idVozila;
     private boolean postoji;
 
+    public Vozac(String id){
+        super(id);
+    }
 
     public boolean isPostoji() {
         return postoji;
@@ -50,5 +55,15 @@ public class Vozac extends Korisnik {
 
     public void setBrClanskeKarte(int brClanskeKarte) {
         this.brClanskeKarte = brClanskeKarte;
+    }
+
+    @Override
+    public int compareTo(Vozac vozac){
+        return Integer.parseInt(id)-Integer.parseInt(vozac.getId());
+    }
+
+    @Override
+    public int compare(Vozac vozac, Vozac vozac1){
+        return Integer.parseInt(vozac.getId()) - Integer.parseInt(vozac1.getId());
     }
 }

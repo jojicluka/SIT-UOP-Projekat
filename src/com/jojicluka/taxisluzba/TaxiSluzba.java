@@ -173,6 +173,15 @@ public class TaxiSluzba {
         return null;
     }
 
+    public Vozac nadjiVozacaId(String id){
+        for(Vozac vozac: vozaci){
+            if (vozac.getId().equals(id)){
+                return vozac;
+            }
+        }
+        return null;
+    }
+
     public VoznjaTel nadjiVoznjuId(String id) {
         for (VoznjaTel voznjaTel: voznjeTel){
             if(voznjaTel.getId().equals(id)){
